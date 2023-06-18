@@ -56,35 +56,36 @@ void delete_at_position(Node *head, int pos)
     tmp->next->prev = tmp;
     delete deleteNode;
 }
-void delete_tail(Node *&tail)
+void delete_tail(Node *&head, Node *&tail)
 {
     Node *deleteNode = tail;
     tail = tail->prev;
     delete deleteNode;
+    if (tail == NULL)
+    {
+        head = NULL;
+        return;
+    }
     tail->next = NULL;
 }
-void delete_head(Node *&head)
+void delete_head(Node *&head, Node *&tail)
 {
     Node *deleteNode = head;
     head = head->next;
     delete deleteNode;
+    if (head == NULL)
+    {
+        tail = NULL;
+        return;
+    }
     head->prev = NULL;
 }
 int main()
 {
     Node *head = new Node(10);
-    Node *a = new Node(20);
-    Node *b = new Node(30);
-    Node *c = new Node(40);
-    Node *tail = c;
+    Node *tail = head;
 
     // connection
-    head->next = a;
-    a->prev = head;
-    a->next = b;
-    b->prev = a;
-    b->next = c;
-    c->prev = b;
 
     int pos;
     cin >> pos;
@@ -95,11 +96,11 @@ int main()
     }
     else if (pos == 0)
     {
-        delete_head(head);
+        delete_head(head, tail);
     }
     else if (pos == size(head) - 1)
     {
-        delete_tail(tail);
+        delete_tail(head, tail);
     }
     else
     {
