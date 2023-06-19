@@ -43,24 +43,23 @@ void reverse(Node *head, Node *tail)
         i = i->next;
         j = j->prev;
     }
+    swap(i->val, j->val);
 }
 int main()
 {
     Node *head = new Node(10);
-    Node *a = new Node(20);
-    Node *b = new Node(30);
-    Node *c = new Node(40);
-    Node *tail = c;
+    // Node *a = new Node(20);
+    Node *tail = head;
 
     // connection
-    head->next = a;
-    a->prev = head;
-    a->next = b;
-    b->prev = a;
-    b->next = c;
-    c->prev = b;
+    // head->next = a;
+    // a->prev = head;
+    // a->next = b;
+    // b->prev = a;
+    // b->next = c;
+    // c->prev = b;
 
-    // reverse(head, tail);
+    reverse(head, tail);
     print_normal(head);
 
     return 0;
